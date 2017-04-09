@@ -22,7 +22,7 @@
 
     <RelativeLayout
         android:id="@+id/layData"
-        android:layout_width="wrap_content"
+        android:layout_width="700px"
         android:layout_height="wrap_content"
         android:layout_alignParentRight="true">
 
@@ -31,14 +31,16 @@
             android:id="@+id/textNameU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Имя: " />
+            android:text="Имя: "
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/contNameU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
-            android:text="TextView" />
+            android:layout_marginLeft="100dp"
+            android:text="TextView"
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/textLastnameU"
@@ -46,16 +48,18 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textNameU"
             android:layout_marginTop="15dp"
-            android:text="Фамилия: " />
+            android:text="Фамилия: "
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/contLastnameU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/contNameU"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginTop="15dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/textTepephoneU"
@@ -63,16 +67,18 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/textLastnameU"
             android:layout_marginTop="15dp"
-            android:text="Телефон: " />
+            android:text="Телефон: "
+            android:textSize="20sp"/>
 
         <TextView
             android:id="@+id/contTelefU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/contLastnameU"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="100dp"
             android:layout_marginTop="15dp"
-            android:text="TextView" />
+            android:text="TextView"
+            android:textSize="20sp"/>
     </RelativeLayout>
 
     <LinearLayout
@@ -83,6 +89,7 @@
         android:layout_below="@id/layData">
         <Button
             android:id="@+id/buttonU"
+            android:text="Обновить"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
 

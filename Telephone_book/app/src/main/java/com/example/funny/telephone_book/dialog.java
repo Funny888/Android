@@ -35,7 +35,7 @@ public class dialog extends AppCompatActivity {
                 {
                     setResult(2,intent);
                 }
-                else
+                else if (a.equals("android.intent.action.TELEPHONE"))
                 {
                     setResult(3,intent);
                 }
@@ -46,11 +46,15 @@ public class dialog extends AppCompatActivity {
         {
             textData.setText(R.string.enterName);
         }
+
         else if(a.equals("android.intent.action.LASTNAME"))
         {
             textData.setText(R.string.enterLastname);
         }
-
+        else if(a.equals("android.intent.action.TELEPHONE"))
+        {
+            textData.setText(R.string.enterTelephone);
+        }
 
     }
 }

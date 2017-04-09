@@ -4,7 +4,7 @@
     <string name="enterName">Введите имя</string>
     <string name="enterLastname">Введите фамилию</string>
     <string name="enterTelephone">Введите номер телефона</string>
-    <string name="LastName">Фамилие</string>
+    <string name="LastName">Фамилия</string>
     <string name="telephone">Телефон</string>
     <string name="exit">Выход</string>
     <string name="sendBack">Записать</string>

@@ -2,14 +2,10 @@ package com.example.funny.telephone_book;
 
 import android.content.ContentValues;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.graphics.Path;
-import android.net.Uri;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.ContextMenu;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +17,9 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Main extends AppCompatActivity implements View.OnClickListener {
 
@@ -206,12 +205,25 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
                     lastName.setText(text);
                 } else if (resultCode == 3) {
                     telephone.setText(text);
+//                    regVir();
                 } else {
                     Toast.makeText(this, "Упс", Toast.LENGTH_SHORT).show();
-                    return;
                 }
             } catch (Exception e) {
                 Toast.makeText(getBaseContext(), "Запись не сделана", Toast.LENGTH_SHORT).show();
             }
+    }
+    public void regVir()
+    {
+        Pattern pattern = Pattern.compile("[+0-9]");
+        Matcher matcher = pattern.matcher(telephone.getText().toString());
+        if (matcher.matches())
+        {
+            System.out.println("yes");
+        }
+        else
+        {
+            System.out.println("no");
+        }
     }
 }
