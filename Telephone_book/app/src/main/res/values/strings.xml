@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Telephone_book</string>
+    <string name="firstName">Имя</string>
+    <string name="enterName">Введите имя</string>
+    <string name="enterLastname">Введите фамилию</string>
+    <string name="enterTelephone">Введите номер телефона</string>
+    <string name="LastName">Фамилие</string>
+    <string name="telephone">Телефон</string>
+    <string name="exit">Выход</string>
+    <string name="sendBack">Записать</string>
+    <string name="record">Занести данные</string>
+    <string name="recordText">Данные записаны</string>
+
+    <string name="delete">Удалить</string>
+    <string name="create">Создать</string>
+    <string name="update">Обновить</string>
+
+
+    <string name="contDel">Контакт удален</string>
+</resources>

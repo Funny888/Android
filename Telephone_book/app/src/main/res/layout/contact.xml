@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.funny.telephone_book.contact"
+    tools:layout_editor_absoluteX="0dp"
+    tools:layout_editor_absoluteY="89dp">
+
+    <RelativeLayout
+        android:id="@+id/layPhoto"
+        android:layout_width="300px"
+        android:layout_height="300px">
+
+        <ImageView
+            android:id="@+id/photoU"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+    </RelativeLayout>
+
+
+    <RelativeLayout
+        android:id="@+id/layData"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true">
+
+
+        <TextView
+            android:id="@+id/textNameU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Имя: " />
+
+        <TextView
+            android:id="@+id/contNameU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="80dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textLastnameU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textNameU"
+            android:layout_marginTop="15dp"
+            android:text="Фамилия: " />
+
+        <TextView
+            android:id="@+id/contLastnameU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contNameU"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="15dp"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/textTepephoneU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/textLastnameU"
+            android:layout_marginTop="15dp"
+            android:text="Телефон: " />
+
+        <TextView
+            android:id="@+id/contTelefU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/contLastnameU"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="15dp"
+            android:text="TextView" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/layButton"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layData">
+        <Button
+            android:id="@+id/buttonU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+</RelativeLayout>
