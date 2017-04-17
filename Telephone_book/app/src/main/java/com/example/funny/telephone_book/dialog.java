@@ -22,6 +22,10 @@ public class dialog extends AppCompatActivity {
     EditText editData;
     Button sendBack;
 
+    private String mask = "_(___)-__-__";
+    private String temp = "";
+    String k;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,19 +34,39 @@ public class dialog extends AppCompatActivity {
         final String a = intent.getAction();
         textData = (TextView) findViewById(R.id.textData);
         editData = (EditText) findViewById(R.id.editData);
+        editData.setText(mask);
         editData.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
-            }
 
+            }
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
-            }
 
+                if(s != null)
+                {
+
+
+
+                        temp = String.valueOf(s.charAt(0));
+                        k = mask.toString();
+                    for (int i = 0; i < mask.length(); i++) {
+
+                        k = k.replaceFirst(String.valueOf(mask.charAt(0)),temp);
+                    }
+                    textData.setText(k);
+
+
+
+                }
+
+
+}
             @Override
             public void afterTextChanged(Editable s) {
+
 
 
             }
