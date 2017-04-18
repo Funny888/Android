@@ -41,32 +41,30 @@ public class dialog extends AppCompatActivity {
 
 
             }
+
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
 
 
-                if(s != null)
-                {
+                if (s != null) {
 
-
-
-                        temp = String.valueOf(s.charAt(0));
-                        k = mask.toString();
+                    k = mask.toString();
                     for (int i = 0; i < mask.length(); i++) {
 
-                        k = k.replaceFirst(String.valueOf(mask.charAt(0)),temp);
+                        temp = String.valueOf(s.charAt(i));
+                        if (!(temp.equals("(") || temp.equals(")") || temp.equals("-"))) {
+
+                            k = k.replaceFirst(String.valueOf(mask.charAt(0)), temp);
+                        }
                     }
-                    textData.setText(k);
-
-
-
+                    editData.setText(k);
                 }
 
 
-}
+            }
+
             @Override
             public void afterTextChanged(Editable s) {
-
 
 
             }
@@ -76,48 +74,44 @@ public class dialog extends AppCompatActivity {
             @Override
             public void onClick(View v) {
 
-                intent.putExtra("text",editData.getText().toString());
+                intent.putExtra("text", editData.getText().toString());
                 if (a.equals("android.intent.action.NAME")) {
 
                     Pattern pattern = Pattern.compile("\\S+");
                     Matcher matcher = pattern.matcher(editData.getText().toString());
-                    setResult(1,intent);
-                    if (matcher.matches()){
-                        finish();}
-                    else {Toast.makeText(getBaseContext(),"Ничего не введено или введено не правильно",Toast.LENGTH_SHORT).show();}
-                }
-                else if(a.equals("android.intent.action.LASTNAME"))
-                {
+                    setResult(1, intent);
+                    if (matcher.matches()) {
+                        finish();
+                    } else {
+                        Toast.makeText(getBaseContext(), "Ничего не введено или введено не правильно", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (a.equals("android.intent.action.LASTNAME")) {
                     Pattern pattern = Pattern.compile("\\S+");
                     Matcher matcher = pattern.matcher(editData.getText().toString());
-                    setResult(2,intent);
-                    if (matcher.matches()){
-                        finish();}
-                    else {Toast.makeText(getBaseContext(),"Ничего не введено или введено не правильно",Toast.LENGTH_SHORT).show();}
-                }
-                else if (a.equals("android.intent.action.TELEPHONE"))
-                {
+                    setResult(2, intent);
+                    if (matcher.matches()) {
+                        finish();
+                    } else {
+                        Toast.makeText(getBaseContext(), "Ничего не введено или введено не правильно", Toast.LENGTH_SHORT).show();
+                    }
+                } else if (a.equals("android.intent.action.TELEPHONE")) {
                     Pattern pattern = Pattern.compile("((8|\\+7)([0-9]{3})([0-9]{7}))");
                     Matcher matcher = pattern.matcher(editData.getText().toString());
-                    setResult(3,intent);
-                    if (matcher.matches()){
-                        finish();}
-                    else {Toast.makeText(getBaseContext(),"Ничего не введено или введено не правильно",Toast.LENGTH_SHORT).show();}
+                    setResult(3, intent);
+                    if (matcher.matches()) {
+                        finish();
+                    } else {
+                        Toast.makeText(getBaseContext(), "Ничего не введено или введено не правильно", Toast.LENGTH_SHORT).show();
+                    }
                 }
             }
         });
-        if (a.equals("android.intent.action.NAME"))
-        {
+        if (a.equals("android.intent.action.NAME")) {
             textData.setText(R.string.enterName);
 
-        }
-
-        else if(a.equals("android.intent.action.LASTNAME"))
-        {
+        } else if (a.equals("android.intent.action.LASTNAME")) {
             textData.setText(R.string.enterLastname);
-        }
-        else if(a.equals("android.intent.action.TELEPHONE"))
-        {
+        } else if (a.equals("android.intent.action.TELEPHONE")) {
             textData.setText(R.string.enterTelephone);
         }
 
