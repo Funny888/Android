@@ -34,7 +34,7 @@ public class dialog extends AppCompatActivity {
         final String a = intent.getAction();
         textData = (TextView) findViewById(R.id.textData);
         editData = (EditText) findViewById(R.id.editData);
-        editData.setText(mask);
+//        editData.setText(mask);
         editData.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -57,7 +57,7 @@ public class dialog extends AppCompatActivity {
                             k = k.replaceFirst(String.valueOf(mask.charAt(0)), temp);
                         }
                     }
-                    editData.setText(k);
+
                 }
 
 
@@ -65,7 +65,7 @@ public class dialog extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                textData.setText(k);
 
             }
         });
