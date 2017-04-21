@@ -3,10 +3,8 @@ package com.example.funny.telephone_book;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.telephony.PhoneNumberFormattingTextWatcher;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,7 +22,8 @@ public class dialog extends AppCompatActivity {
 
     private String mask = "_(___)-__-__";
     private String temp = "";
-    String k;
+    private String endLine;
+    int editLine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,11 +33,11 @@ public class dialog extends AppCompatActivity {
         final String a = intent.getAction();
         textData = (TextView) findViewById(R.id.textData);
         editData = (EditText) findViewById(R.id.editData);
-//        editData.setText(mask);
+        editData.setText(mask);
         editData.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                editLine = count;
 
             }
 
@@ -48,16 +47,23 @@ public class dialog extends AppCompatActivity {
 
                 if (s != null) {
 
-                    k = mask.toString();
-                    for (int i = 0; i < mask.length(); i++) {
+                    if (editLine != s.length()) {
+                        try {
 
-                        temp = String.valueOf(s.charAt(i));
-                        if (!(temp.equals("(") || temp.equals(")") || temp.equals("-"))) {
+                            endLine = mask.toString();
+                            for (int i = 0; i < mask.length(); i++) {
 
-                            k = k.replaceFirst(String.valueOf(mask.charAt(0)), temp);
+                                temp = String.valueOf(s.charAt(i));
+                                if (!(temp.equals("(") || temp.equals(")") || temp.equals("-"))) {
+
+                                    endLine = endLine.replaceFirst(String.valueOf("_"), temp);
+                                }
+                            }
+                            editData.setText(endLine);
+                        } catch (Exception e) {
+                            Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
-
                 }
 
 
@@ -65,7 +71,7 @@ public class dialog extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-                textData.setText(k);
+
 
             }
         });
@@ -83,7 +89,7 @@ public class dialog extends AppCompatActivity {
                     if (matcher.matches()) {
                         finish();
                     } else {
-                        Toast.makeText(getBaseContext(), "Ничего не введено или введено не правильно", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), R.string.writeNotRecord, Toast.LENGTH_SHORT).show();
                     }
                 } else if (a.equals("android.intent.action.LASTNAME")) {
                     Pattern pattern = Pattern.compile("\\S+");
@@ -92,7 +98,7 @@ public class dialog extends AppCompatActivity {
                     if (matcher.matches()) {
                         finish();
                     } else {
-                        Toast.makeText(getBaseContext(), "Ничего не введено или введено не правильно", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), R.string.writeNotRecord, Toast.LENGTH_SHORT).show();
                     }
                 } else if (a.equals("android.intent.action.TELEPHONE")) {
                     Pattern pattern = Pattern.compile("((8|\\+7)([0-9]{3})([0-9]{7}))");
@@ -101,7 +107,7 @@ public class dialog extends AppCompatActivity {
                     if (matcher.matches()) {
                         finish();
                     } else {
-                        Toast.makeText(getBaseContext(), "Ничего не введено или введено не правильно", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getBaseContext(), R.string.writeNotRecord, Toast.LENGTH_SHORT).show();
                     }
                 }
             }

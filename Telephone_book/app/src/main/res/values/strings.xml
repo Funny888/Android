@@ -10,6 +10,7 @@
     <string name="sendBack">Записать</string>
     <string name="record">Занести данные</string>
     <string name="recordText">Данные записаны</string>
+    <string name="writeNotRecord">"Ничего не введено или введено не правильно"</string>
 
     <string name="delete">Удалить</string>
     <string name="create">Создать</string>
