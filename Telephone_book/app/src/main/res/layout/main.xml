@@ -19,7 +19,8 @@
         android:text="@string/firstName" />
     <Button
         android:id="@+id/setBFirst"
-        android:text="..."
+        android:text=".\n.\n.\n"
+        android:lineSpacingMultiplier="0.4"
         android:background="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -36,7 +37,8 @@
         android:layout_below="@id/firsName"/>
     <Button
         android:id="@+id/setBLast"
-        android:text="..."
+        android:text=".\n.\n.\n"
+        android:lineSpacingMultiplier="0.4"
         android:background="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,7 +55,8 @@
         android:layout_below="@id/lastName"/>
     <Button
         android:id="@+id/setBTelephone"
-        android:text="..."
+        android:text=".\n.\n.\n"
+        android:lineSpacingMultiplier="0.4"
         android:background="@null"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,6 +69,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tephone"/>
+    <Button
+        android:id="@+id/recordPhoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=".\n.\n.\n"
+        android:lineSpacingMultiplier="0.3"
+        android:layout_below="@id/tephone"
+        android:layout_marginLeft="325px"
+        android:background="@null"
+    />
     <Button
         android:id="@+id/listB"
         android:text="Показать контакты"

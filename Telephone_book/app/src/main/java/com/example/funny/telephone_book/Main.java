@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.provider.MediaStore;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ContextMenu;
@@ -17,14 +18,13 @@ import android.widget.ListView;
 import android.widget.SimpleCursorAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Main extends AppCompatActivity implements View.OnClickListener {
 
     TextView firstName, lastName, telephone, contName, contLastname, contTelef;
-    Button setBName, setBLast, setBTelephone, listB, recordB;
+    Button setBName, setBLast, setBTelephone, listB, recordB,recordPhoto;
     Intent intent;
     database dtb = new database(this);
     ListView list;
@@ -52,6 +52,8 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
         listB.setOnClickListener(this);
         recordB = (Button) findViewById(R.id.recordB);
         recordB.setOnClickListener(this);
+        recordPhoto = (Button)findViewById(R.id.recordPhoto);
+        recordPhoto.setOnClickListener(this);
         list = (ListView) findViewById(R.id.list);
         list.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -69,6 +71,7 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
                 return false;
             }
         });
+
 
 
 
@@ -94,33 +97,32 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
     public void onClick(View v) {
         SQLiteDatabase db = dtb.getWritableDatabase();
         switch (v.getId()) {
-            case R.id.setBFirst: {
+            case R.id.setBFirst: { //Создание интента для запроса имени
                 intent = new Intent("android.intent.action.NAME");
                 startActivityForResult(intent, 1);
                 break;
             }
-            case R.id.setBLast: {
+            case R.id.setBLast: { //Создание интента для запроса фамилии
                 intent = new Intent("android.intent.action.LASTNAME");
                 startActivityForResult(intent, 1);
                 break;
             }
-            case R.id.setBTelephone: {
+            case R.id.setBTelephone: { //Создание интента для запроса номера
                 intent = new Intent("android.intent.action.TELEPHONE");
                 startActivityForResult(intent, 1);
                 break;
             }
             case R.id.listB: {
                 listFunct(db);
-
                 break;
             }
             case R.id.recordB: {
-                ContentValues contentValues = new ContentValues();
+                ContentValues contentValues = new ContentValues(); // Создание экземпляра контейнера для записи в базу
                 contentValues.put(dtb.NAME, firstName.getText().toString());
                 contentValues.put(dtb.LASTNAME, lastName.getText().toString());
                 contentValues.put(dtb.TELEPHONE, telephone.getText().toString());
                 contentValues.put(dtb.LINK_PHOTO,android.R.drawable.ic_input_add);
-                if (firstName.getText().equals(getText(R.string.firstName)) || firstName.getText().equals(String.valueOf("")) == true)
+                if (firstName.getText().equals(getText(R.string.firstName)) || firstName.getText().equals(String.valueOf("")) == true) // Проверка на пустое значение или значение не изменено
                 {
                     Toast.makeText(this, "Не введено " + getText(R.string.firstName), Toast.LENGTH_LONG).show();
                 }
@@ -133,9 +135,17 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
                     Toast.makeText(this, "Не введено " + getText(R.string.telephone), Toast.LENGTH_LONG).show();
                 }
                else {
-                    db.insert(dtb.NAME_DATATABLE, null, contentValues);
+                    db.insert(dtb.NAME_DATATABLE, null, contentValues); // Запись в базу данных
                     Toast.makeText(this, R.string.recordText, Toast.LENGTH_LONG).show();
                 }
+                break;
+            }
+            case R.id.recordPhoto:
+            {
+                intent = new Intent(Intent.ACTION_OPEN_DOCUMENT_TREE);
+//                intent.putExtra(Intent.ACTION_OPEN_DOCUMENT,"d");
+                startActivityForResult(intent,4);
+
                 break;
             }
 
@@ -146,17 +156,17 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
 
 
     void listFunct(SQLiteDatabase db) {
-        Cursor cursor = db.query(dtb.NAME_DATATABLE, null, null, null, null, null, null);
+        Cursor cursor = db.query(dtb.NAME_DATATABLE, null, null, null, null, null, null); // Создание курсора для запроса
         if (cursor.getCount() == 0) {
             Toast.makeText(getBaseContext(), "Контактов нет", Toast.LENGTH_SHORT).show();
         }
 //        photo = (ImageView) findViewById(R.id.photo);
 //        photo.setImageResource(R.drawable.space);
-        String[] from = new String[]{dtb.NAME, dtb.LASTNAME, dtb.TELEPHONE,dtb.LINK_PHOTO};
-        int[] to = new int[]{R.id.contName, R.id.contLastname, R.id.contTelef,R.id.photo};
-        siplCursAdapt = new SimpleCursorAdapter(this, R.layout.listlay, cursor, from, to);
-        list.setAdapter(siplCursAdapt);
-        registerForContextMenu(list);
+        String[] from = new String[]{dtb.NAME, dtb.LASTNAME, dtb.TELEPHONE,dtb.LINK_PHOTO}; // Создание массива из базы данных
+        int[] to = new int[]{R.id.contName, R.id.contLastname, R.id.contTelef,R.id.photo}; // Создание массива из ИД View элементов
+        siplCursAdapt = new SimpleCursorAdapter(this, R.layout.listlay, cursor, from, to); // Создание адаптера
+        list.setAdapter(siplCursAdapt); // Установка адаптера на ListView
+        registerForContextMenu(list); // Установка ListView на main activity
 
         //                cursor.moveToFirst();
 //                int indexId = cursor.getColumnIndex(dtb.KEY_ID);
@@ -206,7 +216,15 @@ public class Main extends AppCompatActivity implements View.OnClickListener {
                 } else if (resultCode == 3) {
                     telephone.setText(text);
 //                    regVir();
-                } else {
+                }
+                else if (requestCode == 4){
+                    if (resultCode == RESULT_OK)
+                    {
+
+
+                        }
+                }
+                else {
                     Toast.makeText(this, "Упс", Toast.LENGTH_SHORT).show();
                 }
             } catch (Exception e) {

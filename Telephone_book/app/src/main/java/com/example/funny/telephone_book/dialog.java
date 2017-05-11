@@ -20,10 +20,9 @@ public class dialog extends AppCompatActivity {
     EditText editData;
     Button sendBack;
 
-    private String mask = "_(___)-__-__";
-    private String temp = "";
+    private String mask = "_(___)-__-__",temp = "",clear="";
     private String endLine;
-    int editLine;
+    int editLine,pos=0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,48 +32,7 @@ public class dialog extends AppCompatActivity {
         final String a = intent.getAction();
         textData = (TextView) findViewById(R.id.textData);
         editData = (EditText) findViewById(R.id.editData);
-        editData.setText(mask);
-        editData.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                editLine = count;
 
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-
-                if (s != null) {
-
-                    if (editLine != s.length()) {
-                        try {
-
-                            endLine = mask.toString();
-                            for (int i = 0; i < mask.length(); i++) {
-
-                                temp = String.valueOf(s.charAt(i));
-                                if (!(temp.equals("(") || temp.equals(")") || temp.equals("-"))) {
-
-                                    endLine = endLine.replaceFirst(String.valueOf("_"), temp);
-                                }
-                            }
-                            editData.setText(endLine);
-                        } catch (Exception e) {
-                            Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_SHORT).show();
-                        }
-                    }
-                }
-
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-
-            }
-        });
         sendBack = (Button) findViewById(R.id.sendBack);
         sendBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +59,7 @@ public class dialog extends AppCompatActivity {
                         Toast.makeText(getBaseContext(), R.string.writeNotRecord, Toast.LENGTH_SHORT).show();
                     }
                 } else if (a.equals("android.intent.action.TELEPHONE")) {
+
                     Pattern pattern = Pattern.compile("((8|\\+7)([0-9]{3})([0-9]{7}))");
                     Matcher matcher = pattern.matcher(editData.getText().toString());
                     setResult(3, intent);
@@ -119,6 +78,44 @@ public class dialog extends AppCompatActivity {
             textData.setText(R.string.enterLastname);
         } else if (a.equals("android.intent.action.TELEPHONE")) {
             textData.setText(R.string.enterTelephone);
+            editData.setText(mask);
+            editData.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                    editLine = count;
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+
+                    if (s != null) {
+
+                        if (editLine != s.length()) {
+                            try {
+                                endLine = s.toString();
+
+                                for (int i = 0; i < endLine.length(); i++) {
+
+                                }
+
+                                editData.setText(endLine);
+                            } catch (Exception e) {
+                                Toast.makeText(getBaseContext(), e.toString(), Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }
+
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+
+
+                }
+            });
         }
 
     }
