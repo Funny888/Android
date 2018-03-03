@@ -7,28 +7,17 @@
     tools:layout_editor_absoluteX="0dp"
     tools:layout_editor_absoluteY="89dp">
 
-    <RelativeLayout
-        android:id="@+id/layPhoto"
-        android:layout_width="300px"
-        android:layout_height="300px">
-
         <ImageView
             android:id="@+id/photoU"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-    </RelativeLayout>
-
-
-    <RelativeLayout
-        android:id="@+id/layData"
-        android:layout_width="700px"
-        android:layout_height="wrap_content"
-        android:layout_alignParentRight="true">
-
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp"
+            android:layout_width="120dp"
+            android:layout_height="105dp"
+            android:layout_centerHorizontal="true"/>
 
         <TextView
             android:id="@+id/textNameU"
+            android:layout_below="@id/photoU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Имя: "
@@ -36,6 +25,8 @@
 
         <TextView
             android:id="@+id/contNameU"
+            android:layout_below="@id/photoU"
+            android:layout_alignLeft="@id/textNameU"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
@@ -79,20 +70,14 @@
             android:layout_marginTop="15dp"
             android:text="TextView"
             android:textSize="20sp"/>
-    </RelativeLayout>
 
-    <LinearLayout
-        android:id="@+id/layButton"
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/layData">
         <Button
             android:id="@+id/buttonU"
+            android:layout_below="@id/contTelefU"
+            android:layout_marginTop="10dp"
+            android:layout_centerHorizontal="true"
             android:text="Обновить"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
-
-    </LinearLayout>
 
 </RelativeLayout>

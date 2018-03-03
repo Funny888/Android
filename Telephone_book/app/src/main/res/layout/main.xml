@@ -10,12 +10,19 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.funny.telephone_book.Main">
 
+    <ImageView
+        android:id="@+id/Image1"
+        android:layout_width="90dp"
+        android:layout_height="110dp"
+        android:layout_centerHorizontal="true"/>
+
     <TextView
         android:id="@+id/firsName"
+        android:layout_below="@id/Image1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize="30sp"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
         android:text="@string/firstName" />
     <Button
         android:id="@+id/setBFirst"
@@ -23,7 +30,9 @@
         android:lineSpacingMultiplier="0.4"
         android:background="@null"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_height="30dp"
+        android:layout_below="@id/Image1"
         android:layout_alignRight="@id/firsName"
         android:layout_alignParentRight="true"
         />
@@ -31,9 +40,9 @@
         android:id="@+id/lastName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/LastName"
+        android:text="@string/lastName"
         android:textSize="30sp"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_below="@id/firsName"/>
     <Button
         android:id="@+id/setBLast"
@@ -41,7 +50,7 @@
         android:lineSpacingMultiplier="0.4"
         android:background="@null"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="30dp"
         android:layout_alignRight="@id/lastName"
         android:layout_below="@id/setBFirst"
         android:layout_alignParentRight="true"/>
@@ -51,7 +60,7 @@
         android:layout_height="wrap_content"
         android:text="@string/telephone"
         android:textSize="30sp"
-        android:layout_margin="10dp"
+        android:layout_marginLeft="10dp"
         android:layout_below="@id/lastName"/>
     <Button
         android:id="@+id/setBTelephone"
@@ -59,7 +68,7 @@
         android:lineSpacingMultiplier="0.4"
         android:background="@null"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         android:layout_alignRight="@id/tephone"
         android:layout_below="@id/setBLast"
         android:layout_alignParentRight="true"/>
@@ -68,26 +77,19 @@
         android:text="@string/record"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
         android:layout_below="@id/tephone"/>
-    <Button
-        android:id="@+id/recordPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=".\n.\n.\n"
-        android:lineSpacingMultiplier="0.3"
-        android:layout_below="@id/tephone"
-        android:layout_marginLeft="325px"
-        android:background="@null"
-    />
     <Button
         android:id="@+id/listB"
         android:text="Показать контакты"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/tephone"
+        android:layout_marginTop="60dp"
         android:layout_alignParentRight="true"
 
         />
+
     <ListView
         android:id="@+id/list"
         android:layout_width="wrap_content"

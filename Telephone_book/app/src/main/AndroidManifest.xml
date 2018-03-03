@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.funny.telephone_book">
 
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/telephone"
@@ -26,12 +30,26 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".contact"
+        <activity
+            android:name=".contact"
             android:parentActivityName=".Main">
             <intent-filter>
-                <action android:name="Contact"></action>
-                <category android:name="android.intent.category.DEFAULT"></category>
+                <action android:name="Contact" />
+
+                <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".photoSwhich"
+            android:theme="@style/Base.Theme.AppCompat.Dialog"
+            android:parentActivityName=".Main"
+            android:label="Выбор фото">
+            <intent-filter>
+                <action android:name="android.intent.action.photoSwich"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+
         </activity>
     </application>
 

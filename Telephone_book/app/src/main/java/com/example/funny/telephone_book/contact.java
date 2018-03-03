@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.Snackbar;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
@@ -21,6 +24,7 @@ public class contact extends AppCompatActivity implements View.OnClickListener {
     database dtb = new database(this);
     public static String idUpdate;
     Intent intent;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,7 +42,7 @@ public class contact extends AppCompatActivity implements View.OnClickListener {
         Intent intent = getIntent();
         idUpdate = intent.getStringExtra("idUpdate");
         SQLiteDatabase db = dtb.getWritableDatabase();
-        Cursor cur = db.query(dtb.NAME_DATATABLE,null,dtb.KEY_ID + " = " + idUpdate,null,null,null,null);
+        Cursor cur = db.query(dtb.NAME_DATATABLE, null, dtb.KEY_ID + " = " + idUpdate, null, null, null, null);
         int name = cur.getColumnIndex(dtb.NAME);
         int lastName = cur.getColumnIndex(dtb.LASTNAME);
         int telePhone = cur.getColumnIndex(dtb.TELEPHONE);
@@ -48,7 +52,8 @@ public class contact extends AppCompatActivity implements View.OnClickListener {
         contFirstNameU.setText(cur.getString(name));
         contLastNameU.setText(cur.getString(lastName));
         contTelephoneU.setText(cur.getString(telePhone));
-        photoU.setImageResource(getResources().getIdentifier(cur.getString(photo),null,null));
+        photoU.setImageURI(Uri.parse(cur.getString(photo)));
+        photoU.setOnLongClickListener(changePhoto);
     }
 
     @Override
@@ -81,15 +86,32 @@ public class contact extends AppCompatActivity implements View.OnClickListener {
 
         }
     }
-    public void update(String idUpdate)
-    {
+
+    View.OnLongClickListener changePhoto = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+
+            switch (v.getId()) {
+                case R.id.photoU: {
+                    Snackbar.make(v,"Заглушка показанная Snackbar-ом",Snackbar.LENGTH_LONG).show();
+                    break;
+                }
+            }
+
+
+            return false;
+        }
+    };
+
+
+    public void update(String idUpdate) {
         SQLiteDatabase db = dtb.getWritableDatabase();
         ContentValues contvalue = new ContentValues();
-        contvalue.put(dtb.NAME,contFirstNameU.getText().toString());
-        contvalue.put(dtb.LASTNAME,contLastNameU.getText().toString());
-        contvalue.put(dtb.TELEPHONE,contTelephoneU.getText().toString());
+        contvalue.put(dtb.NAME, contFirstNameU.getText().toString());
+        contvalue.put(dtb.LASTNAME, contLastNameU.getText().toString());
+        contvalue.put(dtb.TELEPHONE, contTelephoneU.getText().toString());
 //        contvalue.put(dtb.LINK_PHOTO," ");
-        db.update(dtb.NAME_DATATABLE,contvalue,dtb.KEY_ID + " = ?", new String[] {idUpdate});
+        db.update(dtb.NAME_DATATABLE, contvalue, dtb.KEY_ID + " = ?", new String[]{idUpdate});
 
     }
 
@@ -98,15 +120,17 @@ public class contact extends AppCompatActivity implements View.OnClickListener {
         super.onActivityResult(requestCode, resultCode, data);
         try {
             String text1 = data.getStringExtra("text");
-            if (resultCode == 1) {
-              contFirstNameU.setText(text1);
-                Toast.makeText(getBaseContext(),text1.toString(),Toast.LENGTH_SHORT).show();
-            } else if (resultCode == 2) {
-              contLastNameU.setText(text1);
-            } else if (resultCode == 3) {
-              contTelephoneU.setText(text1);
-            } else {
-                Toast.makeText(this, "Упс", Toast.LENGTH_SHORT).show();
+            if (requestCode == 3) {
+                if (resultCode == 1) {
+                    contFirstNameU.setText(text1);
+                } else if (resultCode == 2) {
+                    contLastNameU.setText(text1);
+                } else if (resultCode == 3) {
+                    contTelephoneU.setText(text1);
+
+                } else {
+                    Toast.makeText(this, "Упс", Toast.LENGTH_SHORT).show();
+                }
             }
         } catch (Exception e) {
             Toast.makeText(getBaseContext(), "Запись не сделана", Toast.LENGTH_SHORT).show();
